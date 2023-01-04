@@ -1,7 +1,7 @@
-The ``0-add_integer`` module
+The "0-add_integer" module
 ======================
 
-Using ``add_integer``
+Using "add_integer"
 -------------------
 
 This is a test file for the function add_integer which adds two integers.
@@ -27,4 +27,4 @@ This is a test file for the function add_integer which adds two integers.
     >>> add_integer(float("nan"))
     Traceback (most recent call last):
     	...
-    ValueError: cannot convert float NaN to integer
+    ValueError: cannot convert float NaN to intege
