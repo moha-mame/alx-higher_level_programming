@@ -1,0 +1,96 @@
+The ``100-matrix_mul`` doctest
+==================================
+
+Using ``matrix_multiplication``
+--------------------------
+
+Import function from module:
+	>>> matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
+
+Normal case with two matrices:
+	>>> matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
+	array([[ 7, 10],
+       	       [15, 22]])
+
+Normal case with two similar matrices:
+	>>> matrix_mul([[1, 2]], [[3, 4], [5, 6]])
+	array([[13, 16]])
+
+Print normal:
+	>>> print(matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
+	[[ 7 10]
+	 [15 22]]
+
+Print normal with negatives:
+	>>> print(matrix_mul([[1, -2], [3, 4]], [[1, 2], [3, -2]]))
+	[[-5  6]
+	 [15 -2]]
+
+Test one argument:
+	>>> matrix_mul()
+	Traceback (most recent call last):
+	TypeError: lazy_matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
+
+Test empty matrices:
+	>>> matrix_mul([], [])
+	0.0
+
+Test just empty m_b:
+	>>> matrix_mul([[1, 2], [3, 4]], [])
+	Traceback (most recent call last):
+	ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 0 is different from 2)
+
+Test empty m_a[[]]:
+	>>> matrix_mul([[]], [[4, 5], [6, 7]])
+	Traceback (most recent call last):
+	ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2 is different from 0)
+
+Test empty m_b[[]]:
+	>>> matrix_mul([[1, 2], [3, 4]], [[]])
+	Traceback (most recent call last):
+	ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 2)
+
+Test different lengths of m_a:
+	>>> matrix_mul([[1, 2, 3], [4, 5]], [[6, 7, 8], [8, 9, 10]])
+	Traceback (most recent call last):
+	TypeError: ufunc 'matmul' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+
+Test different lengths of m_b:
+	>>> matrix_mul([[1, 2, 3], [4, 5, 6]], [[5, 6, 7], [8, 9]])
+	Traceback (most recent call last):
+	ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2 is different from 3)
+
+Test 1st arg string:
+	>>> matrix_mul("Holberton", [[4, 5], [6, 7]])
+	Traceback (most recent call last):
+	ValueError: matmul: Input operand 0 does not have enough dimensions (has 0, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 1)
+
+Test 2nd arg string:
+        >>> matrix_mul([[5, 6], [7, 8]], "Holberton")
+	Traceback (most recent call last):
+	ValueError: matmul: Input operand 1 does not have enough dimensions (has 0, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 1)
+
+Test different number of matrix:
+	>>> matrix_mul([[1, 2], [3, 4]], [[5, 6]])
+	Traceback (most recent call last):
+	ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 2)
+
+Test list of string m_a:
+	>>> matrix_mul([["Holberton", "School"], ["is", "cool"]], [[1, 2], [3, 4]])
+	Traceback (most recent call last):
+	TypeError: ufunc 'matmul' did not contain a loop with signature matching types dtype('<U21') dtype('<U21') dtype('<U21')
+
+Test list of string m_b:
+	>>> matrix_mul([[1, 2], [3, 4]], [["Holberton", "School"], ["is", "cool"]])
+	Traceback (most recent call last):
+	TypeError: ufunc 'matmul' did not contain a loop with signature matching types dtype('<U21') dtype('<U21') dtype('<U21')
+
+Test list of ints for m_a:
+	>>> matrix_mul([1, 2, 3, 4], [[1, 2], [3, 4]])
+	Traceback (most recent call last):
+	ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2 is different from 4)
+
+Test list of ints for m_b:
+	>>> matrix_mul([[1, 2], [3, 4]], [1, 2, 3, 4])
+	Traceback (most recent call last):
+	ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 4 is different from 2)
