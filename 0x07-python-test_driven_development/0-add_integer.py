@@ -5,8 +5,6 @@
 This module has a single function named "add_integer" that adds two integers.
 
 """
-
-
 def add_integer(a, b=98):
     """adds two integers"""
 
