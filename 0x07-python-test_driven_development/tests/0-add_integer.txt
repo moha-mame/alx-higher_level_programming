@@ -24,7 +24,7 @@ This is a test file for the function add_integer which adds two integers.
     Traceback (most recent call last):
     	...
     TypeError: a must be an integer
-    >>> add_integer(nan)
+    >>> add_integer(float("nan"))
     Traceback (most recent call last):
-     ...
-    NameError: name 'nan' is not defined
+    	...
+    ValueError: cannot convert float NaN to integer
