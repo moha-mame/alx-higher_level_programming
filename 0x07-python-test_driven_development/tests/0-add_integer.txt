@@ -1,6 +1,5 @@
 The "0-add_integer" module
 ======================
-
 Using "add_integer"
 -------------------
 
