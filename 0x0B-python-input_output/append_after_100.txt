@@ -2,8 +2,12 @@ At School,
 Python is really important,
 "C is fun!"
 "C is fun!"
+"C is fun!"
+"C is fun!"
 But it can be very hard if:
 - You do not get all Pythonic tricks
+"C is fun!"
+"C is fun!"
 "C is fun!"
 "C is fun!"
 - You do not have strong C knowledge.
