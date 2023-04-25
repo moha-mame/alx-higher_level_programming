@@ -2,17 +2,20 @@
 
 const request = require('request');
 
-const apiUrl = process.argv[2];
+const url = process.argv[2];
+const out = {};
 
-request(apiUrl, { json: true }, (err, res, body) => {
-  if (err) { return console.error(err); }
-  const completedTasksByUser = body.reduce((acc, curr) => {
-    if (curr.completed) {
-      acc[curr.userId] = (acc[curr.userId] || 0) + 1;
-    }
-    return acc;
-  }, {});
-  for (const userId in completedTasksByUser) {
-    console.log(`User ${userId} completed ${completedTasksByUser[userId]} tasks`);
+function count(todo) {
+  if (todo.completed) {
+    const userId = todo.userId.toString();
+    out[userId] = out[userId] + 1 || 1;
+  }
+}
+
+request(url, (error, response, body) => {
+  if (error) throw error;
+  if (response.statusCode === 200) {
+    JSON.parse(body).forEach(count);
+    console.log(out);
   }
 });
